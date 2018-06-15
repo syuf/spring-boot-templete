@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zlpay.templete.mapper.RiskMapper">
+  <resultMap id="BaseResultMap" type="com.zlpay.templete.common.entity.Risk">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="TRADE_DETAIL_ID" jdbcType="VARCHAR" property="tradeDetailId" />
+    <result column="PAYER_ID" jdbcType="VARCHAR" property="payerId" />
+    <result column="DEVICE_ID" jdbcType="VARCHAR" property="deviceId" />
+    <result column="DEVICE_TYPE" jdbcType="CHAR" property="deviceType" />
+    <result column="DEVICE_OS" jdbcType="CHAR" property="deviceOs" />
+    <result column="DEVICE_OS_VERSION" jdbcType="VARCHAR" property="deviceOsVersion" />
+    <result column="DEVICE_IP" jdbcType="VARCHAR" property="deviceIp" />
+    <result column="DEVICE_GPS" jdbcType="VARCHAR" property="deviceGps" />
+    <result column="DEVICE_SIM" jdbcType="VARCHAR" property="deviceSim" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, TRADE_DETAIL_ID, PAYER_ID, DEVICE_ID, DEVICE_TYPE, DEVICE_OS, DEVICE_OS_VERSION, 
+    DEVICE_IP, DEVICE_GPS, DEVICE_SIM, CREATE_TIME, UPDATE_TIME, REMARK
+  </sql>
+  <select id="selectByExample" parameterType="com.zlpay.templete.common.entity.RiskExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from T_QR_RISK
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_QR_RISK
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_QR_RISK
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zlpay.templete.common.entity.RiskExample">
+    delete from T_QR_RISK
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zlpay.templete.common.entity.Risk">
+    insert into T_QR_RISK (ID, TRADE_DETAIL_ID, PAYER_ID, 
+      DEVICE_ID, DEVICE_TYPE, DEVICE_OS, 
+      DEVICE_OS_VERSION, DEVICE_IP, DEVICE_GPS, 
+      DEVICE_SIM, CREATE_TIME, UPDATE_TIME, 
+      REMARK)
+    values (#{id,jdbcType=VARCHAR}, #{tradeDetailId,jdbcType=VARCHAR}, #{payerId,jdbcType=VARCHAR}, 
+      #{deviceId,jdbcType=VARCHAR}, #{deviceType,jdbcType=CHAR}, #{deviceOs,jdbcType=CHAR}, 
+      #{deviceOsVersion,jdbcType=VARCHAR}, #{deviceIp,jdbcType=VARCHAR}, #{deviceGps,jdbcType=VARCHAR}, 
+      #{deviceSim,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlpay.templete.common.entity.Risk">
+    insert into T_QR_RISK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="tradeDetailId != null">
+        TRADE_DETAIL_ID,
+      </if>
+      <if test="payerId != null">
+        PAYER_ID,
+      </if>
+      <if test="deviceId != null">
+        DEVICE_ID,
+      </if>
+      <if test="deviceType != null">
+        DEVICE_TYPE,
+      </if>
+      <if test="deviceOs != null">
+        DEVICE_OS,
+      </if>
+      <if test="deviceOsVersion != null">
+        DEVICE_OS_VERSION,
+      </if>
+      <if test="deviceIp != null">
+        DEVICE_IP,
+      </if>
+      <if test="deviceGps != null">
+        DEVICE_GPS,
+      </if>
+      <if test="deviceSim != null">
+        DEVICE_SIM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeDetailId != null">
+        #{tradeDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="payerId != null">
+        #{payerId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+        #{deviceType,jdbcType=CHAR},
+      </if>
+      <if test="deviceOs != null">
+        #{deviceOs,jdbcType=CHAR},
+      </if>
+      <if test="deviceOsVersion != null">
+        #{deviceOsVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceIp != null">
+        #{deviceIp,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceGps != null">
+        #{deviceGps,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceSim != null">
+        #{deviceSim,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zlpay.templete.common.entity.RiskExample" resultType="java.lang.Long">
+    select count(*) from T_QR_RISK
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update T_QR_RISK
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeDetailId != null">
+        TRADE_DETAIL_ID = #{record.tradeDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payerId != null">
+        PAYER_ID = #{record.payerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceId != null">
+        DEVICE_ID = #{record.deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceType != null">
+        DEVICE_TYPE = #{record.deviceType,jdbcType=CHAR},
+      </if>
+      <if test="record.deviceOs != null">
+        DEVICE_OS = #{record.deviceOs,jdbcType=CHAR},
+      </if>
+      <if test="record.deviceOsVersion != null">
+        DEVICE_OS_VERSION = #{record.deviceOsVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceIp != null">
+        DEVICE_IP = #{record.deviceIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceGps != null">
+        DEVICE_GPS = #{record.deviceGps,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceSim != null">
+        DEVICE_SIM = #{record.deviceSim,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null">
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update T_QR_RISK
+    set ID = #{record.id,jdbcType=VARCHAR},
+      TRADE_DETAIL_ID = #{record.tradeDetailId,jdbcType=VARCHAR},
+      PAYER_ID = #{record.payerId,jdbcType=VARCHAR},
+      DEVICE_ID = #{record.deviceId,jdbcType=VARCHAR},
+      DEVICE_TYPE = #{record.deviceType,jdbcType=CHAR},
+      DEVICE_OS = #{record.deviceOs,jdbcType=CHAR},
+      DEVICE_OS_VERSION = #{record.deviceOsVersion,jdbcType=VARCHAR},
+      DEVICE_IP = #{record.deviceIp,jdbcType=VARCHAR},
+      DEVICE_GPS = #{record.deviceGps,jdbcType=VARCHAR},
+      DEVICE_SIM = #{record.deviceSim,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlpay.templete.common.entity.Risk">
+    update T_QR_RISK
+    <set>
+      <if test="tradeDetailId != null">
+        TRADE_DETAIL_ID = #{tradeDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="payerId != null">
+        PAYER_ID = #{payerId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null">
+        DEVICE_ID = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+        DEVICE_TYPE = #{deviceType,jdbcType=CHAR},
+      </if>
+      <if test="deviceOs != null">
+        DEVICE_OS = #{deviceOs,jdbcType=CHAR},
+      </if>
+      <if test="deviceOsVersion != null">
+        DEVICE_OS_VERSION = #{deviceOsVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceIp != null">
+        DEVICE_IP = #{deviceIp,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceGps != null">
+        DEVICE_GPS = #{deviceGps,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceSim != null">
+        DEVICE_SIM = #{deviceSim,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlpay.templete.common.entity.Risk">
+    update T_QR_RISK
+    set TRADE_DETAIL_ID = #{tradeDetailId,jdbcType=VARCHAR},
+      PAYER_ID = #{payerId,jdbcType=VARCHAR},
+      DEVICE_ID = #{deviceId,jdbcType=VARCHAR},
+      DEVICE_TYPE = #{deviceType,jdbcType=CHAR},
+      DEVICE_OS = #{deviceOs,jdbcType=CHAR},
+      DEVICE_OS_VERSION = #{deviceOsVersion,jdbcType=VARCHAR},
+      DEVICE_IP = #{deviceIp,jdbcType=VARCHAR},
+      DEVICE_GPS = #{deviceGps,jdbcType=VARCHAR},
+      DEVICE_SIM = #{deviceSim,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

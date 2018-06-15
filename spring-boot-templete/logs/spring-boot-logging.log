@@ -1,0 +1,2 @@
+2018-06-14 17:54:19.855  INFO 6072 --- [restartedMain] com.zlpay.SpringBootTempleteApplication  : Starting SpringBootTempleteApplication on syuf-computer with PID 6072 (D:\family\workspace\spring-boot-templete\target\classes started by syuf in D:\family\workspace\spring-boot-templete)
+2018-06-14 17:54:19.856  INFO 6072 --- [restartedMain] com.zlpay.SpringBootTempleteApplication  : The following profiles are active: dev
