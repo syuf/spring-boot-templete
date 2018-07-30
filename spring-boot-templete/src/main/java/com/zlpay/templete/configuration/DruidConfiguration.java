@@ -67,13 +67,13 @@ public class DruidConfiguration {
     public ServletRegistrationBean<StatViewServlet> druidStatViewServlet() {  
         ServletRegistrationBean<StatViewServlet> registrationBean = new ServletRegistrationBean<StatViewServlet>(new StatViewServlet(), "/druid/*");  
         // IP白名单(没有配置或者为空，则允许所有访问)
-        registrationBean.addInitParameter("allow", "");  
+        registrationBean.addInitParameter("allow", "127.0.0.1");  
         // IP黑名单 (存在共同时，deny优先于allow)
-        registrationBean.addInitParameter("deny", "172.17.96.217");  
-        registrationBean.addInitParameter("loginUsername", "");  
-        registrationBean.addInitParameter("loginPassword", "");  
-        // 禁用HTML页面上的“Reset All”功能
-        registrationBean.addInitParameter("resetEnable", "true");  
+        registrationBean.addInitParameter("deny", "");  
+        registrationBean.addInitParameter("loginUsername", "admin");  
+        registrationBean.addInitParameter("loginPassword", "admin");  
+        // 禁用HTML页面上的“Reset All”功能,是否能够重置数据.
+        registrationBean.addInitParameter("resetEnable", "false");  
   
         return registrationBean;  
     }  
@@ -81,7 +81,8 @@ public class DruidConfiguration {
     @Bean  
     public FilterRegistrationBean<WebStatFilter> druidWebStatViewFilter() {  
         FilterRegistrationBean<WebStatFilter> registrationBean = new FilterRegistrationBean<WebStatFilter>(new WebStatFilter());  
-        registrationBean.addInitParameter("urlPatterns", "/*");  
+//        registrationBean.addInitParameter("urlPatterns", "/*");  
+        registrationBean.addUrlPatterns("/*");
         registrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*");  
   
         return registrationBean;  

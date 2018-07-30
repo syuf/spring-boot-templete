@@ -2,10 +2,10 @@ hessian:
   activemqUrl: http://127.0.0.1:8082/activemqAppService
 #端口  
 server:  
-  port: 8080
+  port: 5001
 debug: true 
 logging:
-  config: classpath:logback-spring.xml
+  config: classpath:logback/logback-spring.xml
 spring:
   security:
     user:
@@ -29,7 +29,7 @@ spring:
       # 配置获取连接等待超时的时间
       maxWait: 60000 
       # 配置监控统计拦截的filters，去掉后监控界面sql无法统计
-      filters: stat,wall
+      filters: stat,wall,log4j
       # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
       timeBetweenEvictionRunsMillis: 60000  
       # 配置一个连接在池中最小生存的时间，单位是毫秒
