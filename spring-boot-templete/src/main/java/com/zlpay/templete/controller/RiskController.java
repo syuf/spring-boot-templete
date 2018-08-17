@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.zlpay.templete.common.bo.RiskBO;
 import com.zlpay.templete.service.RiskService;
@@ -22,17 +22,17 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Controller  
-@RequestMapping("/risk")
+@RestController
 public class RiskController {
 	
 	
 	@Autowired
 	private RiskService riskService;
 	
-	@GetMapping("/show")
-	public String showRisk(){
+	@GetMapping("/risk")
+	public List<RiskBO> showRisk(){
 		List<RiskBO> list = riskService.listRisk();
 		log.info("查询到记录[{}]条",list.size());
-		return "index";
+		return list;
 	}
 }
