@@ -17,7 +17,7 @@ spring:
     username: zf_shop  
     password: zf_shop  
     # 使用druid数据源  
-    druid:  
+    druid: 
       # 初始化大小，最小，最大
       initialSize: 2  
       minIdle: 1  
@@ -36,7 +36,7 @@ spring:
       testOnReturn: false  
       # 打开PSCache，并且指定每个连接上PSCache的大小
       poolPreparedStatements: true  
-      MaxPoolPreparedStatementPerConnectionSize: 20
+      max-pool-prepared-statement-per-connection-size:  20
       # 合并多个DruidDataSource的监控数据
       useGlobalDataSourceStat: true  
   
