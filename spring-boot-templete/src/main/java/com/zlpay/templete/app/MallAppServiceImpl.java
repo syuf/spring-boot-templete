@@ -5,7 +5,7 @@ package com.zlpay.templete.app;
 
 import org.springframework.stereotype.Service;
 
-import com.zlpay.common.app.mall.MallAppService;
+import com.zlpay.boot.common.MallAppService;
 
 import lombok.extern.slf4j.Slf4j;
 

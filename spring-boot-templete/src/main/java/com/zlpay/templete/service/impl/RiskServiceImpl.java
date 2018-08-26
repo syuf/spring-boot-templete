@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.zlpay.templete.common.bo.RiskBO;
 import com.zlpay.templete.common.entity.Risk;
 import com.zlpay.templete.common.entity.RiskExample;
-import com.zlpay.templete.mapper.RiskMapper;
+import com.zlpay.templete.dao.RiskDao;
 import com.zlpay.templete.service.RiskService;
 
 /** 
@@ -24,7 +24,7 @@ import com.zlpay.templete.service.RiskService;
 public class RiskServiceImpl implements RiskService {
 	
 	@Autowired
-	private RiskMapper riskMapper;
+	private RiskDao riskMapper;
 
 	@Override
 	public List<RiskBO> listRisk() {

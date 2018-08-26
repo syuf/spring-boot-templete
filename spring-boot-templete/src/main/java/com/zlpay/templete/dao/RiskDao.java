@@ -1,11 +1,11 @@
-package com.zlpay.templete.mapper;
+package com.zlpay.templete.dao;
 
 import com.zlpay.templete.common.entity.Risk;
 import com.zlpay.templete.common.entity.RiskExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface RiskMapper {
+public interface RiskDao {
     long countByExample(RiskExample example);
 
     int deleteByExample(RiskExample example);
